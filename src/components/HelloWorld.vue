@@ -148,8 +148,8 @@ export default {
     name: 'HelloWorld',
     props: {
         msg: {
-          type: String, 
-          default: ''
+            type: String,
+            default: '',
         },
     },
 };
