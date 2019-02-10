@@ -2916,6 +2916,11 @@ date-now@^0.1.4:
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
   integrity sha1-6vQ5/U1ISK105cx9vvIAZyueNFs=
 
+dayjs@^1.7.7, dayjs@^1.8.5:
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.5.tgz#0b066770f89a20022218544989f3d23e5e8db29a"
+  integrity sha512-jo5sEFdsT43RqXxoqQVEuD7XL6iSIRxcjTgheJdlV0EHKObKP3pb9JcJEv/KStVMy25ABNQrFnplKcCit05vOA==
+
 de-indent@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
@@ -5389,6 +5394,13 @@ istanbul-reports@^1.5.1:
   integrity sha512-+cfoZ0UXzWjhAdzosCPP3AN8vvef8XDkWtTfgaN+7L3YTpNYITnCaEkceo5SEYy644VkHka/P1FvkWvrG/rrJw==
   dependencies:
     handlebars "^4.0.3"
+
+jalaliday@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/jalaliday/-/jalaliday-2.1.1.tgz#877f039575a6f36bc4822fd6076feaf2e26181be"
+  integrity sha512-ks2vLrXQJkDkywZWOrv56YqJOHspJBIOpEgH8CwFYY5Ht6+fiihZcn2D8Tj1404ubgSvcWyZ4SFE5d7e7Vvt2g==
+  dependencies:
+    dayjs "^1.7.7"
 
 javascript-stringify@^1.6.0:
   version "1.6.0"

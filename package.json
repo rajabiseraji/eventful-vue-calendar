@@ -9,6 +9,8 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "dayjs": "^1.8.5",
+    "jalaliday": "^2.1.1",
     "vue": "^2.5.22"
   },
   "devDependencies": {
