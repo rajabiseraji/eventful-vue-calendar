@@ -23,6 +23,7 @@
     "babel-jest": "^23.6.0",
     "bootstrap": "^4.2.1",
     "eslint": "^5.8.0",
+    "eslint-plugin-jest": "^22.2.2",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
