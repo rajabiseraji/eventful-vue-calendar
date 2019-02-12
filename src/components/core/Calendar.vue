@@ -270,6 +270,46 @@ export default {
             default: () => []
         }
     },
+    computed: {
+        colsLength() {
+            const {year, month, week, day, numberOfColumns, columnNames} = this
+            /**
+             * These arbitrary numbers could be fec to this component through 
+             * some props like colsInMonth, colsInWeek, colsInDay and etc
+             */
+            if (columnNames.length || numberOfColumns) {
+                return columnNames.length || numberOfColumns;
+            } else if (year) {
+                return 3;
+            } else if (month) {
+                return 7;
+            } else if (week) {
+                return 7;
+            } else if (day) {
+                return 12;
+            }
+        },
+        RowsLength() {
+            const {year, month, week, day, numberOfRows, rowNames} = this
+            /**
+             * These arbitrary numbers could be fec to this component through 
+             * some props like colsInMonth, colsInWeek, colsInDay and etc
+             * 
+             * NOTICE: if gridType is month, then the row and cols number must be pre-determined
+             */
+            if (rowNames.length || numberOfRows) {
+                return rowNames.length || numberOfRows;
+            } else if (year) {
+                return 4;
+            } else if (month) { // just a fallback, we must always use numberOfRows in that case show the maximum number of row
+                return 6;
+            } else if (week) { // just a fallback, we must always use numberOfRows
+                return 10;
+            } else if (day) { // just a fallback, we must always user numberOfRows
+                return 12;
+            }
+        }
+    },
     components: {
         CalendarHeader, 
         GridView
