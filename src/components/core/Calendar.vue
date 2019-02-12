@@ -268,6 +268,14 @@ export default {
         events: {
             type: [Object, Array],
             default: () => []
+        },
+        cellClass: {
+            type: String, 
+            default: ''
+        }, 
+        cellNumberClass: {
+            type: String, 
+            default: ''
         }
     },
     computed: {
