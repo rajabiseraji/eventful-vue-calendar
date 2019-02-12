@@ -58,13 +58,6 @@ export default {
             type: String,
             default: ''
         },
-        /**
-         * 
-         * 
-         * Grid layout props
-         * 
-         * 
-         */
         numberOfRows: {
             type: [Number, Function],
             default: 0
@@ -79,11 +72,21 @@ export default {
                 return ['year', 'month', 'week', 'day', ''].indexOf(value) !== -1
             },
             default: ''
+        },
+        /**
+         * For instance, if we're rendering a month that has 31 days, we must have these 31 days
+         * passed to this component as rawGridData
+         * NOTICE: IT IS NOT THE EVENTS DATA!
+         */
+        rawGridData: {
+            type: [Object, Array],
+            default: []
         }
+        
     },
     computed: {
         colsLength() {
-            const {gridType, rowNames, numberOfRows, numberOfColumns, columnNames} = this
+            const {gridType, numberOfColumns, columnNames} = this
             /**
              * These arbitrary numbers could be fec to this component through 
              * some props like colsInMonth, colsInWeek, colsInDay and etc
@@ -100,8 +103,25 @@ export default {
                 return 12;
             }
         },
-        colsLength() {
-            if (!this.gridType)
+        RowsLength() {
+            const {gridType, rowNames, numberOfRows} = this
+            /**
+             * These arbitrary numbers could be fec to this component through 
+             * some props like colsInMonth, colsInWeek, colsInDay and etc
+             * 
+             * NOTICE: if gridType is month, then the row and cols number must be pre-determined
+             */
+            if (rowNames.length || numberOfRows) {
+                return rowNames.length || numberOfRows;
+            } else if (gridType === 'year') {
+                return 4;
+            } else if (gridType === 'month') { // just a fallback, we must always use numberOfRows in that case show the maximum number of row
+                return 6;
+            } else if (gridType === 'week') { // just a fallback, we must always use numberOfRows
+                return 10;
+            } else if (gridType === 'day') { // just a fallback, we must always user numberOfRows
+                return 12;
+            }
         }
     }
 }
