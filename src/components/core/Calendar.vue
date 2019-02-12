@@ -201,6 +201,14 @@ export default {
             type: Number, 
             default: 7
         },
+        hasColumnLabels: {
+            type: Boolean,
+            default: true
+        },
+        hasRowLabels: {
+            type: Boolean, 
+            default: false
+        },
         columnNames: {
             type: [Array, Object],
             /**
@@ -218,12 +226,28 @@ export default {
             type: Function,
             default: () => {}
         },
+        rowNames: {
+            type: [Array, Object],
+            default: () => [] 
+        },
+        /**
+         * A factory function that makes the days of the week 
+         * this function has precedence over the columnNames prop
+         */
+        rowNameFactory: {
+            type: Function,
+            default: () => {}
+        },
         columnLabelClass: {
             type: String, 
             default: ''
         },
         columnWrapperClass: {
             type: String, 
+            default: ''
+        },
+        weekendClass: {
+            type: String,
             default: ''
         },
         /**
