@@ -168,6 +168,28 @@ export default {
             type: Boolean,
             default: false
         },
+        /**
+         * In case the user just wants a predetermined style
+         * we have to note that these can be all true at the same time, 
+         * in that case we must build and array of these types and let the 
+         * user choose between them
+         */
+        year: {
+            type: Boolean,
+            default: false
+        },
+        month: {
+            type: Boolean,
+            default: false
+        },
+        week: {
+            type: Boolean,
+            default: false
+        },
+        day: {
+            type: Boolean,
+            default: false
+        },
         // TODO: this props could be handled as a state variable if we're using data 
         // factories inside this component, else it must be refactored to the outside
         isLoading: {
@@ -203,7 +225,22 @@ export default {
         columnWrapperClass: {
             type: String, 
             default: ''
-        }
+        },
+        /**
+         * 
+         * 
+         * Grid layout props
+         * 
+         * 
+         */
+        numberOfRows: {
+            type: [Number, Function],
+            default: 7
+        },
+        gridViewWrapperClass: {
+            type: String,
+            default: ''
+        },
     },
     components: {
         CalendarHeader, 
