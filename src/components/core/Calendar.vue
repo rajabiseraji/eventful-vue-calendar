@@ -265,6 +265,10 @@ export default {
             type: String,
             default: ''
         },
+        events: {
+            type: [Object, Array],
+            default: () => []
+        }
     },
     components: {
         CalendarHeader, 
