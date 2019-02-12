@@ -67,7 +67,7 @@ export default {
          */
         numberOfRows: {
             type: [Number, Function],
-            default: 7
+            default: 0
         },
         gridViewWrapperClass: {
             type: String,
@@ -76,8 +76,32 @@ export default {
         gridType: {
             validator: function (value) {
                 // The value must match one of these strings
-                return ['year', 'month', 'week', 'day'].indexOf(value) !== -1
+                return ['year', 'month', 'week', 'day', ''].indexOf(value) !== -1
+            },
+            default: ''
+        }
+    },
+    computed: {
+        colsLength() {
+            const {gridType, rowNames, numberOfRows, numberOfColumns, columnNames} = this
+            /**
+             * These arbitrary numbers could be fec to this component through 
+             * some props like colsInMonth, colsInWeek, colsInDay and etc
+             */
+            if (columnNames.length || numberOfColumns) {
+                return columnNames.length || numberOfColumns;
+            } else if (gridType === 'year') {
+                return 3;
+            } else if (gridType === 'month') {
+                return 7;
+            } else if (gridType === 'week') {
+                return 7;
+            } else if (gridType === 'day') {
+                return 12;
             }
+        },
+        colsLength() {
+            if (!this.gridType)
         }
     }
 }
