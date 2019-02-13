@@ -59,7 +59,7 @@ export default {
          */
         date: {
             type: Object,
-            default: () => dayjs(),
+            default: () => {},
         },
         /**
          * Number of months that we show in one panel
@@ -299,7 +299,7 @@ export default {
                 year, month, week, day, numberOfColumns, columnNames,
             } = this;
             /**
-             * These arbitrary numbers could be fec to this component through
+             * These arbitrary numbers could be fed to this component through
              * some props like colsInMonth, colsInWeek, colsInDay and etc
              */
             if (columnNames.length || numberOfColumns) {
@@ -319,7 +319,7 @@ export default {
                 year, month, week, day, numberOfRows, rowNames,
             } = this;
             /**
-             * These arbitrary numbers could be fec to this component through
+             * These arbitrary numbers could be fed to this component through
              * some props like colsInMonth, colsInWeek, colsInDay and etc
              *
              * NOTICE: if gridType is month, then the row and cols number must be pre-determined
