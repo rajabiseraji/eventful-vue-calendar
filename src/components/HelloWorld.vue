@@ -2,15 +2,15 @@
     <div class="container-fluid justify-content-center align-items-center">
         <img
             alt="Vue logo"
-            src="./assets/logo.png"
+            src="../assets/logo.png"
         >
         <div class="container p-3">
             <calendar
                 id="my-calendar"
                 theme="jabama"
-                :date="dayjs()"
-                :min-date="dayjs()"
-                :max-date="dayjs().add(46, 'day')"
+                :date="today"
+                :min-date="today"
+                :max-date="today.add(46, 'day')"
                 header-wrapper-class="jabama-header"
                 header-nav-wrapper-class="jabama-nav-wrapper-class"
                 next-btn-class="jabama-next-btn"
@@ -55,6 +55,7 @@ export default {
 
         return {
             colNames,
+            today: dayjs(),
         };
     },
 };
