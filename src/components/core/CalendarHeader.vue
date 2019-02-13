@@ -22,10 +22,10 @@
                     v-if="hasNextBtn && hasPrevBtn"
                     class="default-nav-buttons"
                 >
-                    <slot name="nextBtn" :class="['default-next-btn', nextBtnClass]">
+                    <slot name="nextBtn" :is-loading="props.isHeaderLoading" :class="['default-next-btn', nextBtnClass]">
                         &lt;
                     </slot>
-                    <slot name="prevBtn" :class="['default-prev-btn', prevBtnClass]">
+                    <slot name="prevBtn" :is-loading="props.isHeaderLoading" :class="['default-prev-btn', prevBtnClass]">
                         &gt;
                     </slot>
                 </div>
@@ -33,13 +33,18 @@
                     v-if="hasDoubleNextBtn && hasDoublePrevBtn"
                     class="default-double-nav-buttons"
                 >
-                    <slot name="doubleNextBtn" :class="['default-double-next-btn', doubleNextBtnClass]">
+                    <slot name="doubleNextBtn" :is-loading="props.isHeaderLoading" :class="['default-double-next-btn', doubleNextBtnClass]">
                         &lt;&lt;
                     </slot>
-                    <slot name="doublePrevBtn" :class="['default-double-prev-btn', doublePrevBtnClass]">
+                    <slot name="doublePrevBtn" :is-loading="props.isHeaderLoading" :class="['default-double-prev-btn', doublePrevBtnClass]">
                         &gt;&gt;
                     </slot>
                 </div>
+            </div>
+        </slot>
+        <slot name="headerLoading" :is-loading="isHeaderLoading">
+            <div :class="['default-header-loading', headerLoadingClass]">
+                Loading ...
             </div>
         </slot>
     </div>
@@ -61,6 +66,10 @@ export default {
             default: ''
         },
         headerTitleClass: {
+            type: String, 
+            default: ''
+        },
+        headerLoadingClass: {
             type: String, 
             default: ''
         },
