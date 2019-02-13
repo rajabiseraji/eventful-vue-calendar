@@ -1,177 +1,66 @@
 <template>
-    <div class="hello">
-        <h1 class="test">
-            {{ msg }}
-        </h1>
-        <p>
-            For a guide and recipes on how to configure / customize this project,<br>
-            check out the
-            <a
-                href="https://cli.vuejs.org"
-                target="_blank"
-                rel="noopener"
-            >
-                vue-cli documentation
-            </a>.
-        </p>
-        <h3>Installed CLI Plugins</h3>
-        <ul>
-            <li>
-                <a
-                    href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    babel
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    eslint
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    unit-jest
-                </a>
-            </li>
-        </ul>
-        <h3>Essential Links</h3>
-        <ul>
-            <li>
-                <a
-                    href="https://vuejs.org"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Core Docs
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://forum.vuejs.org"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Forum
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://chat.vuejs.org"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Community Chat
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://twitter.com/vuejs"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    Twitter
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://news.vuejs.org"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    News
-                </a>
-            </li>
-        </ul>
-        <h3>Ecosystem</h3>
-        <ul>
-            <li>
-                <a
-                    href="https://router.vuejs.org"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    vue-router
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://vuex.vuejs.org"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    vuex
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://github.com/vuejs/vue-devtools#vue-devtools"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    vue-devtools
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://vue-loader.vuejs.org"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    vue-loader
-                </a>
-            </li>
-            <li>
-                <a
-                    href="https://github.com/vuejs/awesome-vue"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    awesome-vue
-                </a>
-            </li>
-        </ul>
+    <div class="container-fluid justify-content-center align-items-center">
+        <img
+            alt="Vue logo"
+            src="./assets/logo.png"
+        >
+        <div class="container p-3">
+            <calendar
+                id="my-calendar"
+                theme="jabama"
+                :date="dayjs()"
+                :min-date="dayjs()"
+                :max-date="dayjs().add(46, 'day')"
+                header-wrapper-class="jabama-header"
+                header-nav-wrapper-class="jabama-nav-wrapper-class"
+                next-btn-class="jabama-next-btn"
+                prev-btn-class="jabama-prev-btn"
+                double-next-btn-class="jabama-double-next-btn"
+                double-prev-btn-class="jabama-double-prev-btn"
+                :number-of-columns="7"
+                :column-names="colNames"
+                column-label-class="jabama-column-label"
+                column-wrapper-class="jabama-column-wrapper"
+                number-of-rows="6"
+                grid-view-wrapper-class="jabama-grid-view-wrapper-class"
+                cell-class="jabama-cell"
+                cell-number-class="jabama-cell-number"
+            />
+        </div>
     </div>
 </template>
 
 <script>
+import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
+import jalaliday from 'jalaliday';
+import Calendar from './core/Calendar.vue';
+
+dayjs.extend(isBetween);
+dayjs.extend(jalaliday);
+
 export default {
     name: 'HelloWorld',
-    props: {
-        msg: {
-            type: String,
-            default: '',
-        },
+    components: {
+        Calendar,
+    },
+    data() {
+        const colNames = [];
+        const startOfWeek = dayjs().startOf('week');
+        const day = startOfWeek;
+        for (let index = 0; index < 7; index += 1) {
+            colNames.push(day.format('dddd'));
+            day.add(1, 'day');
+        }
+
+        return {
+            colNames,
+        };
     },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.test {
-  color: $bg-color;
-}
+
 </style>
