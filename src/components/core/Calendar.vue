@@ -9,6 +9,36 @@
                 loading...
             </div>
         </slot>
+        <calendar-header 
+            :id="`${id}-header`"
+            :header-wrapper-class="headerWrapperClass"
+            :header-title-class="headerTitleClass"
+            header-loading-class="jabama-header-loading"
+            :header-nav-wrapper-class="headerNavWrapperClass"
+            :next-btn-class="nextBtnClass"
+            :double-next-btn-class="doubleNextBtnClass"
+            :prev-btn-class="prevBtnClass"
+            :double-prev-btn-class="doublePrevBtnClass"
+            :has-navigation="hasNavigation"
+            :has-title="hasTitle"
+            :has-next-btn="hasNextBtn"
+            :has-prev-btn="hasPrevBtn"
+            :has-double-next-btn="hasDoubleNextBtn"
+            :has-double-prev-btn="hasDoublePrevBtn"
+            :isHeaderLoading="isHeaderLoading"
+            :disabled="disabled"
+            :title="date.format('MMMM')"
+            :number-of-columns="numberOfColumns"
+            :has-column-labels="hasColumnLabels"
+            :has-row-labels="hasRowLabels"
+            :column-names="columnNames"
+            :column-name-factory="columnNameFactory"
+            :column-label-class="columnLabelClass"
+            :column-wrapper-class="columnWrapperClass"
+            :row-names="rowNames"
+            :row-name-factory="rowNameFactory"
+            :number-of-rows="numberOfRows"
+        />
     </div>
 </template>
 
