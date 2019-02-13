@@ -1,6 +1,6 @@
 <template>
     <div
-        :class="['default-header', headerWrapperClass]"
+        :class="['default-header', {'disabled': disabled},  headerWrapperClass]"
     >
         <slot
             name="header-content"
@@ -22,10 +22,20 @@
                     v-if="hasNextBtn && hasPrevBtn"
                     class="default-nav-buttons"
                 >
-                    <slot name="nextBtn" :is-loading="props.isHeaderLoading" :class="['default-next-btn', nextBtnClass]">
+                    <slot 
+                        name="nextBtn" 
+                        :is-loading="props.isHeaderLoading" 
+                        :disabled="disabled"
+                        :class="['default-next-btn', nextBtnClass]"
+                    >
                         &lt;
                     </slot>
-                    <slot name="prevBtn" :is-loading="props.isHeaderLoading" :class="['default-prev-btn', prevBtnClass]">
+                    <slot 
+                        name="prevBtn" 
+                        :is-loading="props.isHeaderLoading" 
+                        :disabled="disabled"
+                        :class="['default-prev-btn', prevBtnClass]"
+                    >
                         &gt;
                     </slot>
                 </div>
@@ -33,13 +43,28 @@
                     v-if="hasDoubleNextBtn && hasDoublePrevBtn"
                     class="default-double-nav-buttons"
                 >
-                    <slot name="doubleNextBtn" :is-loading="props.isHeaderLoading" :class="['default-double-next-btn', doubleNextBtnClass]">
+                    <slot 
+                        name="doubleNextBtn" 
+                        :is-loading="props.isHeaderLoading" 
+                        :disabled="disabled"
+                        :class="['default-double-next-btn', doubleNextBtnClass]"
+                    >
                         &lt;&lt;
                     </slot>
-                    <slot name="doublePrevBtn" :is-loading="props.isHeaderLoading" :class="['default-double-prev-btn', doublePrevBtnClass]">
+                    <slot 
+                        name="doublePrevBtn" 
+                        :is-loading="props.isHeaderLoading" 
+                        :disabled="disabled"
+                        :class="['default-double-prev-btn', doublePrevBtnClass]"
+                    >
                         &gt;&gt;
                     </slot>
                 </div>
+            </div>
+            <div 
+                :class="[]"
+            >
+
             </div>
         </slot>
         <slot name="headerLoading" :is-loading="isHeaderLoading">
