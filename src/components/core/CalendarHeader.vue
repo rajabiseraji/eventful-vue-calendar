@@ -16,9 +16,16 @@
             </div>
             <div 
                 v-if="hasNavigation"
-                :class="['default-header-nav', ]"
+                :class="['default-header-nav', headerNavWrapperClass]"
             >
-
+                <div
+                    v-if="hasNextBtn && hasPrevBtn"
+                    class="default-nav-buttons"
+                >
+                    <slot :class="['default-next-btn', nextBtnClass]">
+                        
+                    </slot>
+                </div>
             </div>
         </slot>
     </div>
