@@ -7,9 +7,19 @@
         ]"
         @mouseover="$emit('hover', id)"
         @mouseout="$emit('blur', id)"
-        @click="$emit('click', )"
+        @click="$emit('click', {id, index})"
     >
-
+        <div class="cell-content">
+            <slot
+               :events="events"
+               :date="date"
+               name="cell"     
+            > 
+                <div class="default-cell">
+                    {{ date.format('D') }}
+                </div>
+            </slot>
+        </div>
     </div>
 </template>
 
@@ -51,11 +61,32 @@ export default {
         index: {
             type: Number, 
             default: -1,
+        },
+        events: {
+            type: [Array, Object],
+            default: () => []
+        },
+        date: {
+            type: Object,
+            default: null
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+.calendar-cell {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 
+    .cell-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+}
 </style>
