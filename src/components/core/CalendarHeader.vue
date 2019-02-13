@@ -67,9 +67,18 @@
 
             </div>
         </slot>
-        <slot name="headerLoading" :is-loading="isHeaderLoading">
+        <slot name="header-loading" :is-loading="isHeaderLoading">
             <div :class="['default-header-loading', headerLoadingClass]">
                 Loading ...
+            </div>
+        </slot>
+        <slot 
+            name="header-column-names"
+            v-bind="{numberOfColumns, hasColumnLabels, columnNames, columnNameFactory, columnLabelClass, columnWrapperClass}"
+        >
+            <div :class="['default-column-names-wrapper', columnWrapperClass]">
+                
+                
             </div>
         </slot>
     </div>
@@ -204,5 +213,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+    .default-header-wrapper {
+        width: 100%;
+        display: flex;
+        height: auto;
+    }
 </style>
