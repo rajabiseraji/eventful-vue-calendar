@@ -4,61 +4,61 @@
     >
         <slot
             name="header-content"
-            :props="props"
+            v-bind="propsToPass"
         >
             <div
-                v-if="hasTitle"
-                :class="['default-header-title', headerTitleClass]"
+                v-if="propsToPass.hasTitle"
+                :class="['default-header-title', propsToPass.headerTitleClass]"
             >
                 <slot
-                    :title="title"
+                    :title="propsToPass.title"
                     name="header-title"
                 >
-                    <span> {{ title }} </span>
+                    <span> {{ propsToPass.title }} </span>
                 </slot>
             </div>
             <div
-                v-if="hasNavigation"
-                :class="['default-header-nav', headerNavWrapperClass]"
+                v-if="propsToPass.hasNavigation"
+                :class="['default-header-nav', propsToPass.headerNavWrapperClass]"
             >
                 <div
-                    v-if="hasNextBtn && hasPrevBtn"
+                    v-if="propsToPass.hasNextBtn && propsToPass.hasPrevBtn"
                     class="default-nav-buttons"
                 >
                     <slot
                         name="nextBtn"
-                        :is-loading="props.isHeaderLoading"
-                        :disabled="disabled"
-                        :class="['default-next-btn', nextBtnClass]"
+                        :is-loading="propsToPass.isHeaderLoading"
+                        :disabled="propsToPass.disabled"
+                        :class="['default-next-btn', propsToPass.nextBtnClass]"
                     >
                         &lt;
                     </slot>
                     <slot
                         name="prevBtn"
-                        :is-loading="props.isHeaderLoading"
-                        :disabled="disabled"
-                        :class="['default-prev-btn', prevBtnClass]"
+                        :is-loading="propsToPass.isHeaderLoading"
+                        :disabled="propsToPass.disabled"
+                        :class="['default-prev-btn', propsToPass.prevBtnClass]"
                     >
                         &gt;
                     </slot>
                 </div>
                 <div
-                    v-if="hasDoubleNextBtn && hasDoublePrevBtn"
+                    v-if="propsToPass.hasDoubleNextBtn && propsToPass.hasDoublePrevBtn"
                     class="default-double-nav-buttons"
                 >
                     <slot
                         name="doubleNextBtn"
-                        :is-loading="props.isHeaderLoading"
-                        :disabled="disabled"
-                        :class="['default-double-next-btn', doubleNextBtnClass]"
+                        :is-loading="propsToPass.isHeaderLoading"
+                        :disabled="propsToPass.disabled"
+                        :class="['default-double-next-btn', propsToPass.doubleNextBtnClass]"
                     >
                         &lt;&lt;
                     </slot>
                     <slot
                         name="doublePrevBtn"
-                        :is-loading="props.isHeaderLoading"
-                        :disabled="disabled"
-                        :class="['default-double-prev-btn', doublePrevBtnClass]"
+                        :is-loading="propsToPass.isHeaderLoading"
+                        :disabled="propsToPass.disabled"
+                        :class="['default-double-prev-btn', propsToPass.doublePrevBtnClass]"
                     >
                         &gt;&gt;
                     </slot>
@@ -72,7 +72,10 @@
             name="header-loading"
             :is-loading="isHeaderLoading"
         >
-            <div :class="['default-header-loading', headerLoadingClass]">
+            <div
+                v-if="isHeaderLoading"
+                :class="['default-header-loading', headerLoadingClass]"
+            >
                 Loading ...
             </div>
         </slot>
@@ -209,6 +212,41 @@ export default {
             type: [Number, Function],
             default: 7,
         },
+    },
+    data() {
+        return {
+            propsToPass: {
+                id: this.id,
+                monthTitleFormat: this.monthTitleFormat,
+                headerWrapperClass: this.headerWrapperClass,
+                headerTitleClass: this.headerTitleClass,
+                headerLoadingClass: this.headerLoadingClass,
+                headerNavWrapperClass: this.headerNavWrapperClass,
+                nextBtnClass: this.nextBtnClass,
+                prevBtnClass: this.prevBtnClass,
+                doubleNextBtnClass: this.doubleNextBtnClass,
+                doublePrevBtnClass: this.doublePrevBtnClass,
+                hasNavigation: this.hasNavigation,
+                hasTitle: this.hasTitle,
+                hasNextBtn: this.hasNextBtn,
+                hasPrevBtn: this.hasPrevBtn,
+                hasDoubleNextBtn: this.hasDoubleNextBtn,
+                hasDoublePrevBtn: this.hasDoublePrevBtn,
+                isHeaderLoading: this.isHeaderLoading,
+                disabled: this.disabled,
+                title: this.title,
+                numberOfColumns: this.numberOfColumns,
+                hasColumnLabels: this.hasColumnLabels,
+                hasRowLabels: this.hasRowLabels,
+                columnNames: this.columnNames,
+                columnNameFactory: this.columnNameFactory,
+                columnLabelClass: this.columnLabelClass,
+                columnWrapperClass: this.columnWrapperClass,
+                rowNames: this.rowNames,
+                rowNameFactory: this.rowNameFactory,
+                numberOfRows: this.numberOfRows,
+            },
+        };
     },
 };
 </script>

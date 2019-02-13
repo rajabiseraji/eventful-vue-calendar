@@ -7,7 +7,10 @@
             name="calendar-loading"
             :isLoading="{isLoading}"
         >
-            <div v-if="isLoading" :class="['loading-container']">
+            <div
+                v-if="isLoading"
+                :class="['loading-container']"
+            >
                 loading...
             </div>
         </slot>

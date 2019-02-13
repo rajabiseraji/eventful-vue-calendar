@@ -21,7 +21,7 @@
                 :column-names="colNames"
                 column-label-class="jabama-column-label"
                 column-wrapper-class="jabama-column-wrapper"
-                number-of-rows="6"
+                :number-of-rows="6"
                 grid-view-wrapper-class="jabama-grid-view-wrapper-class"
                 cell-class="jabama-cell"
                 cell-number-class="jabama-cell-number"
