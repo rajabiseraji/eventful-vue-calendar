@@ -1,12 +1,14 @@
 <template>
-    <div class="container">
-        <div class="row align-items-center w-100">
-            <div class="col justify-content-center align-items-center">
-                <button class="btn btn-success text-center">
-                    Hello world
-                </button>
+    <div 
+        :class="['container', theme]"
+        :id="id"
+        
+    >
+        <slot name="calendar-loading" :isLoading={isLoading}>
+            <div :class="['loading-container']">
+                loading...
             </div>
-        </div>
+        </slot>
     </div>
 </template>
 
@@ -339,5 +341,16 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-
+    .loading-container {
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 4;
+        background: rgba($color: #000000, $alpha: 0.5);
+    }
 </style>
