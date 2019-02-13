@@ -47,10 +47,10 @@ export default {
     data() {
         const colNames = [];
         const startOfWeek = dayjs().startOf('week');
-        const day = startOfWeek;
+        let day = startOfWeek;
         for (let index = 0; index < 7; index += 1) {
             colNames.push(day.format('dddd'));
-            day.add(1, 'day');
+            day = day.add(1, 'day');
         }
 
         return {

@@ -83,7 +83,18 @@
             name="header-column-names"
             v-bind="{numberOfColumns, hasColumnLabels, columnNames, columnNameFactory, columnLabelClass, columnWrapperClass}"
         >
-            <div :class="['default-column-names-wrapper', columnWrapperClass]" />
+            <div
+                v-if="hasColumnLabels"  
+                :class="['default-column-names-wrapper', columnWrapperClass]"
+            >
+                <div 
+                    v-for="(day, index) in columnNames"
+                    :key="`${id}-day-${index}`"
+                    :class="['default-col-name-label', columnLabelClass]"    
+                >
+                    {{ day }}
+                </div>
+            </div>
         </slot>
     </div>
 </template>
@@ -256,5 +267,12 @@ export default {
         width: 100%;
         display: flex;
         height: auto;
+    }
+    .default-column-names-wrapper {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 50px;
     }
 </style>
