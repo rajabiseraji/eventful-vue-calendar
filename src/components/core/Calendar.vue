@@ -1,15 +1,17 @@
 <template>
-    <div 
-        :class="['container', theme]"
+    <div
         :id="id"
-        
+        :class="['container', theme]"
     >
-        <slot name="calendar-loading" :isLoading={isLoading}>
+        <slot
+            name="calendar-loading"
+            :isLoading="{isLoading}"
+        >
             <div :class="['loading-container']">
                 loading...
             </div>
         </slot>
-        <calendar-header 
+        <calendar-header
             :id="`${id}-header`"
             :header-wrapper-class="headerWrapperClass"
             :header-title-class="headerTitleClass"
@@ -25,10 +27,10 @@
             :has-prev-btn="hasPrevBtn"
             :has-double-next-btn="hasDoubleNextBtn"
             :has-double-prev-btn="hasDoublePrevBtn"
-            :isHeaderLoading="isHeaderLoading"
+            :is-header-loading="isHeaderLoading"
             :disabled="disabled"
             :title="date.format('MMMM')"
-            :number-of-columns="numberOfColumns"
+            :number-of-columns="colsLength"
             :has-column-labels="hasColumnLabels"
             :has-row-labels="hasRowLabels"
             :column-names="columnNames"
@@ -37,19 +39,19 @@
             :column-wrapper-class="columnWrapperClass"
             :row-names="rowNames"
             :row-name-factory="rowNameFactory"
-            :number-of-rows="numberOfRows"
+            :number-of-rows="rowsLength"
         />
     </div>
 </template>
 
 <script>
 import CalendarHeader from './CalendarHeader.vue';
-import Cell from './Cell.vue';
+// import Cell from './Cell.vue';
 
 export default {
     components: {
         CalendarHeader,
-        Cell,
+        // Cell,
     },
     /**
      * This components is a container, all data and logic are handled in this files
@@ -343,8 +345,11 @@ export default {
             } if (day) {
                 return 12;
             }
+
+            // default fallback for error detection
+            return 6;
         },
-        RowsLength() {
+        rowsLength() {
             const {
                 year, month, week, day, numberOfRows, rowNames,
             } = this;
@@ -365,6 +370,9 @@ export default {
             } if (day) { // just a fallback, we must always user numberOfRows
                 return 12;
             }
+
+            // default fallback for error detection
+            return 5;
         },
     },
 };
