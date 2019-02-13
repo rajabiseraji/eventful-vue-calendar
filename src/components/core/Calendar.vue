@@ -105,6 +105,10 @@ export default {
             type: String, 
             default: ''
         },
+        headerNavWrapperClass: {
+            type: String,
+            default: ''
+        },
         nextBtnClass: {
             type: String, 
             default: ''
@@ -129,6 +133,10 @@ export default {
         hasNavigation: {
             type: Boolean,
             default: true,
+        },
+        hasTitle: {
+            type: Boolean,
+            default: true
         },
         hasNextBtn: {
             type: Boolean,
