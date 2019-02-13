@@ -22,8 +22,22 @@
                     v-if="hasNextBtn && hasPrevBtn"
                     class="default-nav-buttons"
                 >
-                    <slot :class="['default-next-btn', nextBtnClass]">
-                        
+                    <slot name="nextBtn" :class="['default-next-btn', nextBtnClass]">
+                        &lt;
+                    </slot>
+                    <slot name="prevBtn" :class="['default-prev-btn', prevBtnClass]">
+                        &gt;
+                    </slot>
+                </div>
+                <div
+                    v-if="hasDoubleNextBtn && hasDoublePrevBtn"
+                    class="default-double-nav-buttons"
+                >
+                    <slot name="doubleNextBtn" :class="['default-double-next-btn', doubleNextBtnClass]">
+                        &lt;&lt;
+                    </slot>
+                    <slot name="doublePrevBtn" :class="['default-double-prev-btn', doublePrevBtnClass]">
+                        &gt;&gt;
                     </slot>
                 </div>
             </div>
@@ -99,9 +113,6 @@ export default {
             type: Boolean,
             default: true,
         },
-        /**
-         * This is here to handle any kind of loading and lazy loading in header component
-         */
         isHeaderLoading: {
             type: Boolean,
             default: false
@@ -113,6 +124,46 @@ export default {
         title: {
             type: String,
             default: ''
+        },
+        numberOfColumns: {
+            type: Number, 
+            default: 7
+        },
+        hasColumnLabels: {
+            type: Boolean,
+            default: true
+        },
+        hasRowLabels: {
+            type: Boolean, 
+            default: false
+        },
+        columnNames: {
+            type: [Array, Object],
+            default: () => [] 
+        },
+        columnNameFactory: {
+            type: Function,
+            default: () => {}
+        },
+        columnLabelClass: {
+            type: String, 
+            default: ''
+        },
+        columnWrapperClass: {
+            type: String, 
+            default: ''
+        },
+        rowNames: {
+            type: [Array, Object],
+            default: () => [] 
+        },
+        rowNameFactory: {
+            type: Function,
+            default: () => {}
+        },
+        numberOfRows: {
+            type: [Number, Function],
+            default: 7
         }
     }
 };
