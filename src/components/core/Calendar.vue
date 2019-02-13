@@ -11,11 +11,16 @@
 </template>
 
 <script>
-import CalendarHeader from './CalendarHeader';
-import GridView from './GridView';
+import CalendarHeader from './CalendarHeader.vue';
+import Cell from './Cell.vue';
+
 export default {
+    components: {
+        CalendarHeader,
+        Cell,
+    },
     /**
-     * This components is a container, all data and logic are handled in this files 
+     * This components is a container, all data and logic are handled in this files
      * and its corresponing helpers
      */
     props: {
@@ -80,8 +85,8 @@ export default {
             default: null,
         },
         /**
-         * An array of selcted dates and cells, this is also too specific and is going to be replaced 
-         * by a select event 
+         * An array of selcted dates and cells, this is also too specific and is going to be replaced
+         * by a select event
          * WARNING: to be deprecated
          */
         selections: {
@@ -98,36 +103,36 @@ export default {
          * Header props to be relayed to Clendar"Header Component
          */
         headerWrapperClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         headerTitleClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         headerNavWrapperClass: {
             type: String,
-            default: ''
+            default: '',
         },
         nextBtnClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         prevBtnClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         /**
          * Class of double arrow buttons
          * by default point to the next and prev months
          */
         doubleNextBtnClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         doublePrevBtnClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         // The same as show navigation
         hasNavigation: {
@@ -136,7 +141,7 @@ export default {
         },
         hasTitle: {
             type: Boolean,
-            default: true
+            default: true,
         },
         hasNextBtn: {
             type: Boolean,
@@ -159,7 +164,7 @@ export default {
          */
         isHeaderLoading: {
             type: Boolean,
-            default: false
+            default: false,
         },
         /**
          * End of Header Class props
@@ -170,166 +175,166 @@ export default {
          */
         id: {
             type: String,
-            default: ''
+            default: '',
         },
         disabled: {
             type: Boolean,
-            default: false
+            default: false,
         },
         /**
          * In case the user just wants a predetermined style
-         * we have to note that these can be all true at the same time, 
-         * in that case we must build and array of these types and let the 
+         * we have to note that these can be all true at the same time,
+         * in that case we must build and array of these types and let the
          * user choose between them
          */
         year: {
             type: Boolean,
-            default: false
+            default: false,
         },
         month: {
             type: Boolean,
-            default: false
+            default: false,
         },
         week: {
             type: Boolean,
-            default: false
+            default: false,
         },
         day: {
             type: Boolean,
-            default: false
+            default: false,
         },
-        // TODO: this props could be handled as a state variable if we're using data 
+        // TODO: this props could be handled as a state variable if we're using data
         // factories inside this component, else it must be refactored to the outside
         isLoading: {
-            type: Boolean, 
-            defualt: false
+            type: Boolean,
+            defualt: false,
         },
         /** number of calendar grid columns */
         numberOfColumns: {
-            type: Number, 
-            default: 7
+            type: Number,
+            default: 7,
         },
         hasColumnLabels: {
             type: Boolean,
-            default: true
+            default: true,
         },
         hasRowLabels: {
-            type: Boolean, 
-            default: false
+            type: Boolean,
+            default: false,
         },
         columnNames: {
             type: [Array, Object],
             /**
              * This must be changed to return an array of all default weekdays from our date library
-             * for now we can handle it in the asyncData and use a helper function or a data factory prop 
+             * for now we can handle it in the asyncData and use a helper function or a data factory prop
              * to fill it
              */
-            default: () => [] 
+            default: () => [],
         },
         /**
-         * A factory function that makes the days of the week 
+         * A factory function that makes the days of the week
          * this function has precedence over the columnNames prop
          */
         columnNameFactory: {
             type: Function,
-            default: () => {}
+            default: () => {},
         },
         rowNames: {
             type: [Array, Object],
-            default: () => [] 
+            default: () => [],
         },
         /**
-         * A factory function that makes the days of the week 
+         * A factory function that makes the days of the week
          * this function has precedence over the columnNames prop
          */
         rowNameFactory: {
             type: Function,
-            default: () => {}
+            default: () => {},
         },
         columnLabelClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         columnWrapperClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         weekendClass: {
             type: String,
-            default: ''
+            default: '',
         },
         /**
-         * 
-         * 
+         *
+         *
          * Grid layout props
-         * 
-         * 
+         *
+         *
          */
         numberOfRows: {
             type: [Number, Function],
-            default: 7
+            default: 7,
         },
         gridViewWrapperClass: {
             type: String,
-            default: ''
+            default: '',
         },
         events: {
             type: [Object, Array],
-            default: () => []
+            default: () => [],
         },
         cellClass: {
-            type: String, 
-            default: ''
-        }, 
+            type: String,
+            default: '',
+        },
         cellNumberClass: {
-            type: String, 
-            default: ''
-        }
+            type: String,
+            default: '',
+        },
     },
     computed: {
         colsLength() {
-            const {year, month, week, day, numberOfColumns, columnNames} = this
+            const {
+                year, month, week, day, numberOfColumns, columnNames,
+            } = this;
             /**
-             * These arbitrary numbers could be fec to this component through 
+             * These arbitrary numbers could be fec to this component through
              * some props like colsInMonth, colsInWeek, colsInDay and etc
              */
             if (columnNames.length || numberOfColumns) {
                 return columnNames.length || numberOfColumns;
-            } else if (year) {
+            } if (year) {
                 return 3;
-            } else if (month) {
+            } if (month) {
                 return 7;
-            } else if (week) {
+            } if (week) {
                 return 7;
-            } else if (day) {
+            } if (day) {
                 return 12;
             }
         },
         RowsLength() {
-            const {year, month, week, day, numberOfRows, rowNames} = this
+            const {
+                year, month, week, day, numberOfRows, rowNames,
+            } = this;
             /**
-             * These arbitrary numbers could be fec to this component through 
+             * These arbitrary numbers could be fec to this component through
              * some props like colsInMonth, colsInWeek, colsInDay and etc
-             * 
+             *
              * NOTICE: if gridType is month, then the row and cols number must be pre-determined
              */
             if (rowNames.length || numberOfRows) {
                 return rowNames.length || numberOfRows;
-            } else if (year) {
+            } if (year) {
                 return 4;
-            } else if (month) { // just a fallback, we must always use numberOfRows in that case show the maximum number of row
+            } if (month) { // just a fallback, we must always use numberOfRows in that case show the maximum number of row
                 return 6;
-            } else if (week) { // just a fallback, we must always use numberOfRows
+            } if (week) { // just a fallback, we must always use numberOfRows
                 return 10;
-            } else if (day) { // just a fallback, we must always user numberOfRows
+            } if (day) { // just a fallback, we must always user numberOfRows
                 return 12;
             }
-        }
+        },
     },
-    components: {
-        CalendarHeader, 
-        GridView
-    }
 };
 </script>
 

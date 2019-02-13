@@ -1,9 +1,9 @@
 <template>
     <div
-        :class="['calendar-cell', 
-            {'disabled': disabled}, 
-            {selectedClass: selected}, 
-            {activeClass: isActive} 
+        :class="['calendar-cell',
+                 {'disabled': disabled},
+                 {selectedClass: selected},
+                 {activeClass: isActive}
         ]"
         @mouseover="$emit('hover', id)"
         @mouseout="$emit('blur', id)"
@@ -11,10 +11,10 @@
     >
         <div class="cell-content">
             <slot
-               :events="events"
-               :date="date"
-               name="cell"     
-            > 
+                :events="events"
+                :date="date"
+                name="cell"
+            >
                 <div class="default-cell">
                     {{ date.format('D') }}
                 </div>
@@ -28,50 +28,50 @@ export default {
     props: {
         calendarId: {
             type: String,
-            default: ''
+            default: '',
         },
         disabled: {
             type: Boolean,
-            default: false
+            default: false,
         },
         selected: {
             type: Boolean,
-            default: false
+            default: false,
         },
         isLoading: {
             type: Boolean,
-            default: false
+            default: false,
         },
         hoverClass: {
             type: String,
-            default: 'hover'
+            default: 'hover',
         },
         activeClass: {
             type: String,
-            default: 'hover'
+            default: 'hover',
         },
         selectedClass: {
             type: String,
-            default: 'hover'
+            default: 'hover',
         },
         id: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         index: {
-            type: Number, 
+            type: Number,
             default: -1,
         },
         events: {
             type: [Array, Object],
-            default: () => []
+            default: () => [],
         },
         date: {
             type: Object,
-            default: null
-        }
-    }
-}
+            default: null,
+        },
+    },
+};
 </script>
 
 <style lang="scss" scoped>

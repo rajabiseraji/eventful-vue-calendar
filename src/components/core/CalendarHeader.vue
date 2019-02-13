@@ -1,20 +1,23 @@
 <template>
     <div
-        :class="['default-header', {'disabled': disabled},  headerWrapperClass]"
+        :class="['default-header', {'disabled': disabled}, headerWrapperClass]"
     >
         <slot
             name="header-content"
             :props="props"
         >
-            <div 
-                :class="['default-header-title', headerTitleClass]"
+            <div
                 v-if="hasTitle"
+                :class="['default-header-title', headerTitleClass]"
             >
-                <slot :title="title" name="header-title">
+                <slot
+                    :title="title"
+                    name="header-title"
+                >
                     <span> {{ title }} </span>
                 </slot>
             </div>
-            <div 
+            <div
                 v-if="hasNavigation"
                 :class="['default-header-nav', headerNavWrapperClass]"
             >
@@ -22,17 +25,17 @@
                     v-if="hasNextBtn && hasPrevBtn"
                     class="default-nav-buttons"
                 >
-                    <slot 
-                        name="nextBtn" 
-                        :is-loading="props.isHeaderLoading" 
+                    <slot
+                        name="nextBtn"
+                        :is-loading="props.isHeaderLoading"
                         :disabled="disabled"
                         :class="['default-next-btn', nextBtnClass]"
                     >
                         &lt;
                     </slot>
-                    <slot 
-                        name="prevBtn" 
-                        :is-loading="props.isHeaderLoading" 
+                    <slot
+                        name="prevBtn"
+                        :is-loading="props.isHeaderLoading"
                         :disabled="disabled"
                         :class="['default-prev-btn', prevBtnClass]"
                     >
@@ -43,17 +46,17 @@
                     v-if="hasDoubleNextBtn && hasDoublePrevBtn"
                     class="default-double-nav-buttons"
                 >
-                    <slot 
-                        name="doubleNextBtn" 
-                        :is-loading="props.isHeaderLoading" 
+                    <slot
+                        name="doubleNextBtn"
+                        :is-loading="props.isHeaderLoading"
                         :disabled="disabled"
                         :class="['default-double-next-btn', doubleNextBtnClass]"
                     >
                         &lt;&lt;
                     </slot>
-                    <slot 
-                        name="doublePrevBtn" 
-                        :is-loading="props.isHeaderLoading" 
+                    <slot
+                        name="doublePrevBtn"
+                        :is-loading="props.isHeaderLoading"
                         :disabled="disabled"
                         :class="['default-double-prev-btn', doublePrevBtnClass]"
                     >
@@ -61,25 +64,23 @@
                     </slot>
                 </div>
             </div>
-            <div 
+            <div
                 :class="[]"
-            >
-
-            </div>
+            />
         </slot>
-        <slot name="header-loading" :is-loading="isHeaderLoading">
+        <slot
+            name="header-loading"
+            :is-loading="isHeaderLoading"
+        >
             <div :class="['default-header-loading', headerLoadingClass]">
                 Loading ...
             </div>
         </slot>
-        <slot 
+        <slot
             name="header-column-names"
             v-bind="{numberOfColumns, hasColumnLabels, columnNames, columnNameFactory, columnLabelClass, columnWrapperClass}"
         >
-            <div :class="['default-column-names-wrapper', columnWrapperClass]">
-                
-                
-            </div>
+            <div :class="['default-column-names-wrapper', columnWrapperClass]" />
         </slot>
     </div>
 </template>
@@ -88,48 +89,48 @@
 export default {
     props: {
         id: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         monthTitleFormat: {
             type: String,
             default: 'MMMM',
         },
         headerWrapperClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         headerTitleClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         headerLoadingClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         headerNavWrapperClass: {
             type: String,
-            default: ''
+            default: '',
         },
         nextBtnClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         prevBtnClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         /**
          * Class of double arrow buttons
          * by default point to the next and prev months
          */
         doubleNextBtnClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         doublePrevBtnClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         // The same as show navigation
         hasNavigation: {
@@ -158,57 +159,57 @@ export default {
         },
         isHeaderLoading: {
             type: Boolean,
-            default: false
+            default: false,
         },
         disabled: {
             type: Boolean,
-            default: false
+            default: false,
         },
         title: {
             type: String,
-            default: ''
+            default: '',
         },
         numberOfColumns: {
-            type: Number, 
-            default: 7
+            type: Number,
+            default: 7,
         },
         hasColumnLabels: {
             type: Boolean,
-            default: true
+            default: true,
         },
         hasRowLabels: {
-            type: Boolean, 
-            default: false
+            type: Boolean,
+            default: false,
         },
         columnNames: {
             type: [Array, Object],
-            default: () => [] 
+            default: () => [],
         },
         columnNameFactory: {
             type: Function,
-            default: () => {}
+            default: () => {},
         },
         columnLabelClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         columnWrapperClass: {
-            type: String, 
-            default: ''
+            type: String,
+            default: '',
         },
         rowNames: {
             type: [Array, Object],
-            default: () => [] 
+            default: () => [],
         },
         rowNameFactory: {
             type: Function,
-            default: () => {}
+            default: () => {},
         },
         numberOfRows: {
             type: [Number, Function],
-            default: 7
-        }
-    }
+            default: 7,
+        },
+    },
 };
 </script>
 
